@@ -1,4 +1,4 @@
-USE QuanLyNguoiDung;
+USE Quan_Ly_Nguoi_Dung;
 
 DROP TABLE IF EXISTS Users;
 
