@@ -38,11 +38,7 @@
             lblEmail = new Label();
             lblUsername = new Label();
             lblWelcome = new Label();
-            label5 = new Label();
             btnLogout = new Button();
-            label4 = new Label();
-            label3 = new Label();
-            label2 = new Label();
             panel1.SuspendLayout();
             panelCenter.SuspendLayout();
             SuspendLayout();
@@ -123,115 +119,91 @@
             panelCenter.Controls.Add(lblEmail);
             panelCenter.Controls.Add(lblUsername);
             panelCenter.Controls.Add(lblWelcome);
-            panelCenter.Controls.Add(label5);
             panelCenter.Controls.Add(btnLogout);
-            panelCenter.Controls.Add(label4);
-            panelCenter.Controls.Add(label3);
-            panelCenter.Controls.Add(label2);
-            panelCenter.Location = new Point(269, 112);
+            panelCenter.Location = new Point(217, 105);
             panelCenter.Margin = new Padding(4);
             panelCenter.Name = "panelCenter";
-            panelCenter.Size = new Size(665, 356);
+            panelCenter.Size = new Size(760, 370);
             panelCenter.TabIndex = 1;
             // 
             // lblLoginTime
             // 
-            lblLoginTime.AutoSize = true;
+            lblLoginTime.AutoSize = false;
+            lblLoginTime.Font = new Font(
+                "Cascadia Code", 11F, FontStyle.Bold);
+
             lblLoginTime.ForeColor = Color.White;
-            lblLoginTime.Location = new Point(24, 232);
-            lblLoginTime.Margin = new Padding(4, 0, 4, 0);
+            lblLoginTime.Location = new Point(30, 210);
             lblLoginTime.Name = "lblLoginTime";
-            lblLoginTime.Size = new Size(0, 43);
+            lblLoginTime.Size = new Size(700, 55);
             lblLoginTime.TabIndex = 8;
+            lblLoginTime.Text = "";
+            lblLoginTime.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblEmail
             // 
-            lblEmail.AutoSize = true;
+            lblEmail.AutoSize = false;
+            lblEmail.Font = new Font(
+                "Cascadia Code", 11F, FontStyle.Bold);
+
             lblEmail.ForeColor = Color.White;
-            lblEmail.Location = new Point(128, 140);
-            lblEmail.Margin = new Padding(4, 0, 4, 0);
+            lblEmail.Location = new Point(30, 150);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(0, 43);
+            lblEmail.Size = new Size(700, 45);
             lblEmail.TabIndex = 7;
+            lblEmail.Text = "";
+            lblEmail.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblUsername
             // 
-            lblUsername.AutoSize = true;
+            lblUsername.AutoSize = false;
+            lblUsername.Font = new Font(
+                "Cascadia Code", 11F, FontStyle.Bold);
+
             lblUsername.ForeColor = Color.White;
-            lblUsername.Location = new Point(247, 85);
-            lblUsername.Margin = new Padding(4, 0, 4, 0);
+            lblUsername.Location = new Point(30, 95);
             lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(0, 43);
+            lblUsername.Size = new Size(700, 45);
             lblUsername.TabIndex = 6;
+            lblUsername.Text = "";
+            lblUsername.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblWelcome
             // 
-            lblWelcome.AutoSize = true;
-            lblWelcome.Font = new Font("Cascadia Code", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblWelcome.AutoSize = false;
+            lblWelcome.Font = new Font(
+                "Cascadia Code", 12F, FontStyle.Bold);
+
             lblWelcome.ForeColor = Color.BlanchedAlmond;
-            lblWelcome.Location = new Point(214, 26);
-            lblWelcome.Margin = new Padding(4, 0, 4, 0);
+            lblWelcome.Location = new Point(30, 25);
             lblWelcome.Name = "lblWelcome";
-            lblWelcome.Size = new Size(0, 43);
+            lblWelcome.Size = new Size(700, 55);
             lblWelcome.TabIndex = 5;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Cascadia Code", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.FloralWhite;
-            label5.Location = new Point(24, 26);
-            label5.Margin = new Padding(4, 0, 4, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(190, 43);
-            label5.TabIndex = 4;
-            label5.Text = "Xin chào,";
+            lblWelcome.Text = "";
+            lblWelcome.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(376, 282);
-            btnLogout.Margin = new Padding(4);
+            btnLogout.BackColor = Color.FromArgb(243, 178, 97);
+            btnLogout.ForeColor = Color.SaddleBrown;
+
+            btnLogout.Font = new Font(
+                "Cascadia Code",
+                11F,
+                FontStyle.Bold);
+
+            btnLogout.FlatStyle = FlatStyle.Flat;
+
+            btnLogout.Location = new Point(490, 290);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(255, 62);
+            btnLogout.Size = new Size(240, 55);
+
             btnLogout.TabIndex = 0;
             btnLogout.Text = "Đăng xuất";
-            btnLogout.UseVisualStyleBackColor = true;
+
+            btnLogout.UseVisualStyleBackColor = false;
+
             btnLogout.Click += btnLogout_Click_1;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.ForeColor = Color.NavajoWhite;
-            label4.Location = new Point(24, 200);
-            label4.Margin = new Padding(4, 0, 4, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(456, 43);
-            label4.TabIndex = 2;
-            label4.Text = "Lần đăng nhập gần nhất:";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.ForeColor = Color.NavajoWhite;
-            label3.Location = new Point(24, 140);
-            label3.Margin = new Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(133, 43);
-            label3.TabIndex = 1;
-            label3.Text = "Email:";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.ForeColor = Color.NavajoWhite;
-            label2.Location = new Point(24, 85);
-            label2.Margin = new Padding(4, 0, 4, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(285, 43);
-            label2.TabIndex = 0;
-            label2.Text = "Tên đăng nhập:";
-            label2.Click += label2_Click;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(19F, 43F);
@@ -265,12 +237,8 @@
         private Button btnExit;
         private Label label1;
         private Panel panelCenter;
-        private Label label2;
         private Button btnLogout;
-        private Label label4;
-        private Label label3;
         private Label lblWelcome;
-        private Label label5;
         private Label lblLoginTime;
         private Label lblEmail;
         private Label lblUsername;

@@ -22,8 +22,16 @@ namespace UserManagement
         public MainForm(FormWindowState state = FormWindowState.Normal)
         {
             InitializeComponent();
+            // Thiết lập vị trí cửa sổ
+            this.StartPosition = FormStartPosition.CenterScreen;
+
+            // Tránh kích thước Form quá nhỏ
+            this.MinimumSize = new Size(900, 600);
+
+            // Giữ trạng thái cửa sổ
             this.WindowState = state;
 
+            // Cho phép kéo Form
             if (panel1 != null)
             {
                 panel1.MouseDown += Panel1_MouseDown;
@@ -99,53 +107,27 @@ namespace UserManagement
 
         private void HienThiThongTin()
         {
-            // Hiển thị lời chào
-            if (!string.IsNullOrWhiteSpace(hoTen))
-            {
-                lblWelcome.Text =
-                    $"Xin chào, {hoTen}!";
-            }
-            else
-            {
-                lblWelcome.Text =
-                    "Xin chào, người chơi!";
-            }
+            // 1. Lời chào
+            lblWelcome.Text =
+                string.IsNullOrWhiteSpace(hoTen)
+                ? "Xin chào, người chơi!"
+                : $"Xin chào, {hoTen}!";
 
-            // Hiển thị tên đăng nhập
-            if (!string.IsNullOrWhiteSpace(tenDangNhap))
-            {
-                lblUsername.Text =
-                    $"Tên đăng nhập: {tenDangNhap}";
-            }
-            else
-            {
-                lblUsername.Text =
-                    "Tên đăng nhập: (Không có)";
-            }
+            // 2. Tên đăng nhập
+            lblUsername.Text =
+                $"Tên đăng nhập: {tenDangNhap}";
 
-            // Hiển thị Email
-            if (!string.IsNullOrWhiteSpace(email))
-            {
-                lblEmail.Text =
-                    $"Email: {email}";
-            }
-            else
-            {
-                lblEmail.Text =
-                    "Email: (Chưa cập nhật)";
-            }
+            // 3. Email
+            lblEmail.Text =
+                string.IsNullOrWhiteSpace(email)
+                ? "Email: Chưa cập nhật"
+                : $"Email: {email}";
 
-            // Hiển thị thời gian đăng nhập hiện tại
-            if (!string.IsNullOrWhiteSpace(loginTime))
-            {
-                lblLoginTime.Text =
-                    $"Thời gian đăng nhập: {loginTime}";
-            }
-            else
-            {
-                lblLoginTime.Text =
-                    "Thời gian đăng nhập: Chưa có";
-            }
+            // 4. Thời gian đăng nhập
+            lblLoginTime.Text =
+                string.IsNullOrWhiteSpace(loginTime)
+                ? "Thời gian đăng nhập: Chưa có"
+                : $"Thời gian đăng nhập: {loginTime}";
         }
 
         private async Task<bool> TaiThongTinUserAsync()
@@ -215,15 +197,12 @@ namespace UserManagement
             if (panelCenter == null)
                 return;
 
-            int x = Math.Max(
-                0,
-                (ClientSize.Width - panelCenter.Width) / 2);
-
-            int y = Math.Max(
-                0,
-                (ClientSize.Height - panelCenter.Height) / 2);
-
-            panelCenter.Location = new Point(x, y);
+            panelCenter.Location = new Point(
+                Math.Max(0,
+                    (ClientSize.Width - panelCenter.Width) / 2),
+                Math.Max(0,
+                    (ClientSize.Height - panelCenter.Height) / 2)
+            );
         }
 
         private void Panel1_MouseDown(object sender, MouseEventArgs e)
