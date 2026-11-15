@@ -8,6 +8,7 @@ namespace GameShared
         public const string DANGNHAP = "DANGNHAP";
         public const string LAYTHONGTIN = "LAYTHONGTIN";
         public const string DANGXUAT = "DANGXUAT";
+        public const string QUENMATKHAU = "QUENMATKHAU";
     }
 
     public static class StatusCodes

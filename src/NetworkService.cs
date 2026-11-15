@@ -129,6 +129,13 @@ namespace UserManagement
                     JsonSerializer.Serialize(
                         request, jsonOptions);
 
+                // Kiểm tra kích thước thông điệp trước khi gửi
+                if (Encoding.UTF8.GetByteCount(json) > 16384)
+                {
+                    return Error(400, "Thông điệp gửi đi vượt quá giới hạn 16KB.");
+                }
+
+
                 // Gửi một dòng JSON
                 await writer!
                     .WriteLineAsync(json)

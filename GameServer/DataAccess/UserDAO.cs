@@ -1,9 +1,10 @@
-﻿
+﻿using System.IO;
+using System.Text.Json;
 using System;
 using System.Data;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
-using Gameshared;
+using GameShared;
 
 namespace GameServer.DataAccess
 {
@@ -11,16 +12,79 @@ namespace GameServer.DataAccess
     {
         private readonly string chuoiKetNoi;
 
+
         public UserDAO()
         {
-            // Cấu hình chuỗi kết nối bằng biến môi trường.
-            // Chỉ GameServer được quyền truy cập thông tin này.
-            chuoiKetNoi =
-                Environment.GetEnvironmentVariable(
-                    "GAME_DB_CONNECTION")
-                ?? throw new InvalidOperationException(
-                    "Chưa cấu hình GAME_DB_CONNECTION");
+            // Đường dẫn đến appsettings.json trong thư mục chạy
+            string filePath = Path.Combine(
+                AppContext.BaseDirectory,
+                "appsettings.json"
+            );
+
+            // Kiểm tra file cấu hình
+            if (!File.Exists(filePath))
+            {
+                throw new FileNotFoundException(
+                    "Không tìm thấy file appsettings.json.",
+                    filePath
+                );
+            }
+
+            // Đọc nội dung JSON
+            string json = File.ReadAllText(filePath);
+
+            using JsonDocument document =
+                JsonDocument.Parse(json);
+
+            // Đọc ConnectionStrings
+            if (!document.RootElement.TryGetProperty(
+                "ConnectionStrings", out JsonElement connections))
+            {
+                throw new InvalidOperationException(
+                    "Không tìm thấy mục ConnectionStrings."
+                );
+            }
+
+            // Đọc GameDatabase
+            if (!connections.TryGetProperty(
+                "GameDatabase", out JsonElement database))
+            {
+                throw new InvalidOperationException(
+                    "Không tìm thấy chuỗi kết nối GameDatabase."
+                );
+            }
+
+            chuoiKetNoi = database.GetString() ?? "";
+
+            if (string.IsNullOrWhiteSpace(chuoiKetNoi))
+            {
+                throw new InvalidOperationException(
+                    "Chuỗi kết nối Database đang bị trống."
+                );
+            }
         }
+
+
+        public async Task<bool> KiemTraKetNoiDatabaseAsync()
+        {
+            try
+            {
+                using var conn = new SqlConnection(chuoiKetNoi);
+
+                await conn.OpenAsync();
+
+                return conn.State == ConnectionState.Open;
+            }
+            catch (SqlException)
+            {
+                return false;
+            }
+            catch (InvalidOperationException)
+            {
+                return false;
+            }
+        }
+
 
         // 1. Kiểm tra username tồn tại
         public async Task<bool> KiemTraTenDangNhapTonTaiAsync(

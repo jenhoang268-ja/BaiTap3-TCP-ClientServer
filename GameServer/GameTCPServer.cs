@@ -205,53 +205,74 @@ namespace GameServer
                     };
 
                 // Giữ kết nối để nhận nhiều lệnh
+                // Giữ kết nối để nhận nhiều lệnh
                 while (!token.IsCancellationRequested)
                 {
-                    string? json =
-                        await reader.ReadLineAsync(token);
+                    // Đọc một lần duy nhất cho mỗi vòng lặp
+                    string? json = await reader.ReadLineAsync(token);
 
-                    // Client đóng kết nối
+                    // Client đã ngắt kết nối
                     if (json == null)
-                        break;
-
-                    // Kiểm tra kích thước thông điệp
-                    if (json.Length > MAX_MESSAGE_LENGTH)
                     {
-                        NetworkResponse error = Fail(
-                            StatusCodes.BAD_REQUEST,
-                            "Thông điệp vượt quá giới hạn.");
-
-                        await writer.WriteLineAsync(
-                            JsonSerializer.Serialize(error));
-
                         break;
+                    }
+
+                    // Kiểm tra kích thước thông điệp theo byte UTF-8
+                    if (Encoding.UTF8.GetByteCount(json) > MAX_MESSAGE_LENGTH)
+                    {
+                        NetworkResponse sizeErrorResponse = new NetworkResponse
+                        {
+                            StatusCode = StatusCodes.BAD_REQUEST,
+                            Success = false,
+                            Message = "Thông điệp vượt quá giới hạn 16KB."
+                        };
+
+                        // Sửa lỗi: Serialize đúng biến vừa được tạo ở trên
+                        string sizeErrorResult = JsonSerializer.Serialize(sizeErrorResponse);
+                        await writer.WriteLineAsync(sizeErrorResult);
+
+                        continue;
                     }
 
                     NetworkRequest? request = null;
                     NetworkResponse response;
 
+
                     try
                     {
-                        request =
-                            JsonSerializer.Deserialize
-                                <NetworkRequest>(json);
+                        // 1. Deserialize JSON thành NetworkRequest
+                        request = JsonSerializer.Deserialize<NetworkRequest>(
+                            json,
+                            new JsonSerializerOptions
+                            {
+                                PropertyNameCaseInsensitive = true
+                            });
 
+                        // 2. Kiểm tra đối tượng sau khi Deserialize
                         if (request == null)
                         {
                             response = Fail(
                                 StatusCodes.BAD_REQUEST,
-                                "Yêu cầu không hợp lệ.");
+                                "Dữ liệu yêu cầu không hợp lệ.");
                         }
+                        // 3. Kiểm tra mã lệnh
+                        else if (string.IsNullOrWhiteSpace(request.Action))
+                        {
+                            response = Fail(
+                                StatusCodes.BAD_REQUEST,
+                                "Thiếu mã lệnh Action.");
+                        }
+                        // 4. Kiểm tra yêu cầu hợp lệ
                         else
                         {
-                            response =
-                                await ProcessRequestAsync(
-                                    session,
-                                    request);
+                            response = await ProcessRequestAsync(
+                                session,
+                                request);
                         }
                     }
                     catch (JsonException)
                     {
+                        // JSON sai định dạng hoặc không thể chuyển đổi
                         response = Fail(
                             StatusCodes.BAD_REQUEST,
                             "Dữ liệu JSON không hợp lệ.");
@@ -522,6 +543,8 @@ namespace GameServer
                     "Không tìm thấy thông tin tài khoản.");
             }
 
+            profile.LoginTime = session.LoginTime?.ToString("dd/MM/yyyy HH:mm") ?? "";
+
             return new NetworkResponse
             {
                 StatusCode = StatusCodes.SUCCESS,
@@ -529,7 +552,6 @@ namespace GameServer
                 Message = "Lấy thông tin thành công.",
                 Profile = profile
             };
-            profile.LoginTime = session.LoginTime?.ToString("dd/MM/yyyy HH:mm") ?? "";
         }
 
 
@@ -592,12 +614,6 @@ namespace GameServer
 
             // Ngừng nhận kết nối
             listener?.Stop();
-
-            // Đóng toàn bộ kết nối Client
-            foreach (var session in clients.Values)
-            {
-                session.Client.Close();
-            }
 
             // Chờ vòng lặp Accept kết thúc
             if (acceptTask != null)
