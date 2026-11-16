@@ -75,7 +75,7 @@ namespace GameServer.DataAccess
             }
 
             chuoiKetNoi = database.GetString() ?? "";
-
+            Debug.WriteLine($"[DEBUG] Đang kết nối tới: {chuoiKetNoi}");
             if (string.IsNullOrWhiteSpace(chuoiKetNoi))
             {
                 throw new InvalidOperationException(
@@ -313,9 +313,15 @@ namespace GameServer.DataAccess
 
                 return rows > 0;
             }
+            //  catch (SqlException ex)
+            // {
+            //     GhiLogSql(ex, "DangKyUserAsync");
+            //     throw;
+            // }
             catch (SqlException ex)
             {
-                GhiLogSql(ex, "DangKyUserAsync");
+                MessageBox.Show("Lỗi Database: " + ex.Message); // Nếu là WinForms
+                Debug.WriteLine("Lỗi Database: " + ex.Message);
                 throw;
             }
         }

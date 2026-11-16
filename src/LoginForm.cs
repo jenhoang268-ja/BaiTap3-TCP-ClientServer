@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using GameShared;
 using System.Threading.Tasks;
 
+
 namespace UserManagement
 {
     public partial class LoginForm : Form
@@ -420,22 +421,22 @@ namespace UserManagement
 
         private void txtTenDangNhap_TextChanged(object sender, EventArgs e)
         {
-            if (lblError != null) lblError.Text = "";
+           // if (lblError != null) lblError.Text = "";
         }
 
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
-            if (lblError != null) lblError.Text = "";
+           // if (lblError != null) lblError.Text = "";
         }
 
         private void txtTenDangNhap_Click(object sender, EventArgs e)
         {
-            if (lblError != null) lblError.Text = "";
+            //if (lblError != null) lblError.Text = "";
         }
 
         private void txtPassword_Click(object sender, EventArgs e)
         {
-            if (lblError != null) lblError.Text = "";
+            //if (lblError != null) lblError.Text = "";
         }
 
         private void chkHienMatKhau_CheckedChanged(object sender, EventArgs e)
