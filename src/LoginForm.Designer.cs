@@ -161,7 +161,7 @@
             lblPort.AutoSize = true;
             lblPort.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblPort.ForeColor = Color.NavajoWhite;
-            lblPort.Location = new Point(587, 220);
+            lblPort.Location = new Point(552, 220);
             lblPort.Name = "lblPort";
             lblPort.Size = new Size(80, 18);
             lblPort.TabIndex = 16;
@@ -184,7 +184,7 @@
             lblConnectStatus.AutoSize = true;
             lblConnectStatus.Font = new Font("Cascadia Code", 12F);
             lblConnectStatus.ForeColor = Color.NavajoWhite;
-            lblConnectStatus.Location = new Point(439, 271);
+            lblConnectStatus.Location = new Point(383, 308);
             lblConnectStatus.Name = "lblConnectStatus";
             lblConnectStatus.Size = new Size(118, 21);
             lblConnectStatus.TabIndex = 14;
@@ -193,9 +193,9 @@
             // txtServerPort
             // 
             txtServerPort.Font = new Font("Cascadia Code", 13.875F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtServerPort.Location = new Point(587, 254);
+            txtServerPort.Location = new Point(552, 254);
             txtServerPort.Name = "txtServerPort";
-            txtServerPort.Size = new Size(261, 29);
+            txtServerPort.Size = new Size(296, 29);
             txtServerPort.TabIndex = 13;
             // 
             // txtServerIP
@@ -203,7 +203,7 @@
             txtServerIP.Font = new Font("Cascadia Code", 13.875F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txtServerIP.Location = new Point(21, 254);
             txtServerIP.Name = "txtServerIP";
-            txtServerIP.Size = new Size(548, 29);
+            txtServerIP.Size = new Size(491, 29);
             txtServerIP.TabIndex = 12;
             // 
             // lblConnect
