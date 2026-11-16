@@ -281,52 +281,53 @@ namespace UserManagement
                     return;
                 }
 
+
+                // Xóa mật khẩu cũ trước khi hiển thị thông báo
+                // Lệnh Clear() sẽ kích hoạt TextChanged và xóa lblError
+                txtPassword.Clear();
+
+                // Xử lý phản hồi đăng nhập thất bại
                 switch (response.StatusCode)
                 {
                     case StatusCodes.UNAUTHORIZED:
-                        lblError.Text =
-                            "Sai tên đăng nhập hoặc mật khẩu!";
+                        lblError.Text = "Sai tên đăng nhập hoặc mật khẩu!";
                         break;
 
                     case StatusCodes.BAD_REQUEST:
-                        lblError.Text =
-                            "Thông tin đăng nhập không hợp lệ!";
+                        lblError.Text = "Thông tin đăng nhập không hợp lệ!";
                         break;
 
                     case StatusCodes.SERVICE_UNAVAILABLE:
-                        lblError.Text =
-                            "Không thể kết nối hoặc sử dụng Server!";
+                        lblError.Text = "Không thể kết nối hoặc sử dụng Server!";
                         break;
 
                     default:
-                        lblError.Text = response.Message;
+                        lblError.Text = string.IsNullOrWhiteSpace(response.Message)
+                            ? "Đăng nhập thất bại!"
+                            : response.Message;
                         break;
                 }
 
+                // Hiển thị thông báo lỗi
                 lblError.ForeColor = Color.Yellow;
                 lblError.Visible = true;
                 lblError.BringToFront();
+                lblError.Refresh();
 
-                // Trạng thái TCP
+                // Cập nhật trạng thái TCP
                 if (NetworkService.IsConnected)
                 {
-                    lblConnectStatus.Text =
-                        "Server đã phản hồi";
-
-                    lblConnectStatus.ForeColor =
-                        Color.LightGreen;
+                    lblConnectStatus.Text = "Server đã phản hồi";
+                    lblConnectStatus.ForeColor = Color.LightGreen;
                 }
                 else
                 {
-                    lblConnectStatus.Text =
-                        "Mất kết nối Server";
-
-                    lblConnectStatus.ForeColor =
-                        Color.Yellow;
+                    lblConnectStatus.Text = "Mất kết nối Server";
+                    lblConnectStatus.ForeColor = Color.Yellow;
                 }
 
-                txtPassword.Clear();
                 txtPassword.Focus();
+
             }
             catch (Exception ex)
             {
