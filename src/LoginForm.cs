@@ -16,6 +16,11 @@ namespace UserManagement
         public LoginForm(FormWindowState state = FormWindowState.Normal)
         {
             InitializeComponent();
+            // 1. Tắt cơ chế tự bóp nhỏ Form
+            this.AutoSize = false;
+
+            // 2. Tắt cơ chế tự thu phóng theo màn hình Windows
+            this.AutoScaleMode = AutoScaleMode.None;
             this.WindowState = state;
 
             if (panel1 != null)
@@ -28,6 +33,7 @@ namespace UserManagement
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
+            txtPassword.PasswordChar = '\0';
             // Căn giữa Panel
             CenterPanel();
 
@@ -430,6 +436,16 @@ namespace UserManagement
         private void txtPassword_Click(object sender, EventArgs e)
         {
             if (lblError != null) lblError.Text = "";
+        }
+
+        private void chkHienMatKhau_CheckedChanged(object sender, EventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar = !chkHienMatKhau.Checked;
+        }
+
+        private void panelCenter_Paint_1(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

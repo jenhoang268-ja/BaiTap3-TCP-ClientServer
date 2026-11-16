@@ -26,6 +26,9 @@
             btnMinimize = new Button();
             btnExit = new Button();
             panelCenter = new Panel();
+            chkHienMatKhau = new CheckBox();
+            lblPort = new Label();
+            lblIP = new Label();
             lblConnectStatus = new Label();
             txtServerPort = new TextBox();
             txtServerIP = new TextBox();
@@ -39,8 +42,6 @@
             label3 = new Label();
             label2 = new Label();
             lnkRegister = new LinkLabel();
-            lblIP = new Label();
-            lblPort = new Label();
             panel1.SuspendLayout();
             panelCenter.SuspendLayout();
             SuspendLayout();
@@ -64,12 +65,12 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Cascadia Code", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
             label1.ForeColor = Color.SaddleBrown;
-            label1.Location = new Point(597, 10);
+            label1.Location = new Point(602, 15);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(190, 43);
+            label1.Size = new Size(111, 25);
             label1.TabIndex = 1;
             label1.Text = "Đăng Nhập";
             // 
@@ -78,10 +79,10 @@
             btnMaximize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnMaximize.BackColor = Color.Peru;
             btnMaximize.Font = new Font("Segoe UI Black", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnMaximize.Location = new Point(1196, 10);
+            btnMaximize.Location = new Point(1196, 8);
             btnMaximize.Margin = new Padding(4);
             btnMaximize.Name = "btnMaximize";
-            btnMaximize.Size = new Size(55, 45);
+            btnMaximize.Size = new Size(55, 43);
             btnMaximize.TabIndex = 2;
             btnMaximize.TabStop = false;
             btnMaximize.Text = "❐";
@@ -93,10 +94,10 @@
             btnMinimize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnMinimize.BackColor = Color.Peru;
             btnMinimize.Font = new Font("Segoe UI Black", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnMinimize.Location = new Point(1146, 8);
+            btnMinimize.Location = new Point(1144, 8);
             btnMinimize.Margin = new Padding(4);
             btnMinimize.Name = "btnMinimize";
-            btnMinimize.Size = new Size(55, 45);
+            btnMinimize.Size = new Size(55, 43);
             btnMinimize.TabIndex = 1;
             btnMinimize.TabStop = false;
             btnMinimize.Text = "-";
@@ -110,7 +111,7 @@
             btnExit.Location = new Point(1249, 8);
             btnExit.Margin = new Padding(4);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(55, 45);
+            btnExit.Size = new Size(55, 43);
             btnExit.TabIndex = 0;
             btnExit.TabStop = false;
             btnExit.Text = "X";
@@ -120,6 +121,7 @@
             // panelCenter
             // 
             panelCenter.Anchor = AnchorStyles.None;
+            panelCenter.Controls.Add(chkHienMatKhau);
             panelCenter.Controls.Add(lblPort);
             panelCenter.Controls.Add(lblIP);
             panelCenter.Controls.Add(lblConnectStatus);
@@ -134,37 +136,74 @@
             panelCenter.Controls.Add(txtTenDangNhap);
             panelCenter.Controls.Add(label3);
             panelCenter.Controls.Add(label2);
+            panelCenter.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
             panelCenter.Location = new Point(184, 100);
             panelCenter.Margin = new Padding(4);
             panelCenter.Name = "panelCenter";
-            panelCenter.Size = new Size(866, 538);
+            panelCenter.Size = new Size(866, 531);
             panelCenter.TabIndex = 5;
+            panelCenter.Paint += panelCenter_Paint_1;
+            // 
+            // chkHienMatKhau
+            // 
+            chkHienMatKhau.AutoSize = true;
+            chkHienMatKhau.ForeColor = Color.Snow;
+            chkHienMatKhau.Location = new Point(279, 135);
+            chkHienMatKhau.Name = "chkHienMatKhau";
+            chkHienMatKhau.Size = new Size(174, 29);
+            chkHienMatKhau.TabIndex = 17;
+            chkHienMatKhau.Text = "Hiện mật khẩu";
+            chkHienMatKhau.UseVisualStyleBackColor = true;
+            chkHienMatKhau.CheckedChanged += chkHienMatKhau_CheckedChanged;
+            // 
+            // lblPort
+            // 
+            lblPort.AutoSize = true;
+            lblPort.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPort.ForeColor = Color.NavajoWhite;
+            lblPort.Location = new Point(587, 220);
+            lblPort.Name = "lblPort";
+            lblPort.Size = new Size(80, 18);
+            lblPort.TabIndex = 16;
+            lblPort.Text = "Cổng Port";
+            // 
+            // lblIP
+            // 
+            lblIP.AutoSize = true;
+            lblIP.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblIP.ForeColor = Color.NavajoWhite;
+            lblIP.Location = new Point(21, 220);
+            lblIP.Name = "lblIP";
+            lblIP.Size = new Size(88, 18);
+            lblIP.TabIndex = 15;
+            lblIP.Text = "Địa chỉ IP";
             // 
             // lblConnectStatus
             // 
+            lblConnectStatus.Anchor = AnchorStyles.None;
             lblConnectStatus.AutoSize = true;
-            lblConnectStatus.Font = new Font("Cascadia Code", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblConnectStatus.Font = new Font("Cascadia Code", 12F);
             lblConnectStatus.ForeColor = Color.NavajoWhite;
-            lblConnectStatus.Location = new Point(361, 319);
+            lblConnectStatus.Location = new Point(439, 271);
             lblConnectStatus.Name = "lblConnectStatus";
-            lblConnectStatus.Size = new Size(182, 32);
+            lblConnectStatus.Size = new Size(118, 21);
             lblConnectStatus.TabIndex = 14;
             lblConnectStatus.Text = "Chưa kết nối";
             // 
             // txtServerPort
             // 
             txtServerPort.Font = new Font("Cascadia Code", 13.875F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtServerPort.Location = new Point(587, 266);
+            txtServerPort.Location = new Point(587, 254);
             txtServerPort.Name = "txtServerPort";
-            txtServerPort.Size = new Size(261, 50);
+            txtServerPort.Size = new Size(261, 29);
             txtServerPort.TabIndex = 13;
             // 
             // txtServerIP
             // 
             txtServerIP.Font = new Font("Cascadia Code", 13.875F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtServerIP.Location = new Point(21, 266);
+            txtServerIP.Location = new Point(21, 254);
             txtServerIP.Name = "txtServerIP";
-            txtServerIP.Size = new Size(548, 50);
+            txtServerIP.Size = new Size(548, 29);
             txtServerIP.TabIndex = 12;
             // 
             // lblConnect
@@ -172,9 +211,9 @@
             lblConnect.AutoSize = true;
             lblConnect.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblConnect.ForeColor = Color.NavajoWhite;
-            lblConnect.Location = new Point(21, 185);
+            lblConnect.Location = new Point(21, 173);
             lblConnect.Name = "lblConnect";
-            lblConnect.Size = new Size(303, 35);
+            lblConnect.Size = new Size(152, 18);
             lblConnect.TabIndex = 11;
             lblConnect.Text = "Kết nối GameServer";
             // 
@@ -184,10 +223,10 @@
             lblRegister.Font = new Font("Cascadia Code", 10.875F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblRegister.ForeColor = Color.Chocolate;
             lblRegister.LinkColor = Color.NavajoWhite;
-            lblRegister.Location = new Point(218, 484);
+            lblRegister.Location = new Point(314, 454);
             lblRegister.Margin = new Padding(4, 0, 4, 0);
             lblRegister.Name = "lblRegister";
-            lblRegister.Size = new Size(459, 39);
+            lblRegister.Size = new Size(243, 20);
             lblRegister.TabIndex = 10;
             lblRegister.TabStop = true;
             lblRegister.Text = "Chưa có tài khoản? Đăng kí";
@@ -197,10 +236,10 @@
             // 
             btnThoat.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             btnThoat.BackColor = Color.Peru;
-            btnThoat.Location = new Point(488, 409);
+            btnThoat.Location = new Point(470, 364);
             btnThoat.Margin = new Padding(4);
             btnThoat.Name = "btnThoat";
-            btnThoat.Size = new Size(349, 71);
+            btnThoat.Size = new Size(349, 64);
             btnThoat.TabIndex = 9;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = false;
@@ -208,23 +247,23 @@
             // 
             // lblError
             // 
-            lblError.AutoSize = true;
+            lblError.Anchor = AnchorStyles.None;
             lblError.Font = new Font("Cascadia Code", 8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblError.ForeColor = Color.Red;
-            lblError.Location = new Point(34, 156);
+            lblError.Location = new Point(21, 131);
             lblError.Margin = new Padding(4, 0, 4, 0);
             lblError.Name = "lblError";
-            lblError.Size = new Size(0, 29);
+            lblError.Size = new Size(215, 29);
             lblError.TabIndex = 6;
             // 
             // btnDangNhap
             // 
             btnDangNhap.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             btnDangNhap.BackColor = Color.Peru;
-            btnDangNhap.Location = new Point(59, 409);
+            btnDangNhap.Location = new Point(43, 364);
             btnDangNhap.Margin = new Padding(4);
             btnDangNhap.Name = "btnDangNhap";
-            btnDangNhap.Size = new Size(366, 71);
+            btnDangNhap.Size = new Size(366, 64);
             btnDangNhap.TabIndex = 2;
             btnDangNhap.Text = "Đăng Nhập";
             btnDangNhap.UseVisualStyleBackColor = false;
@@ -237,7 +276,7 @@
             txtPassword.Location = new Point(279, 90);
             txtPassword.Margin = new Padding(4);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(569, 45);
+            txtPassword.Size = new Size(569, 29);
             txtPassword.TabIndex = 1;
             txtPassword.UseSystemPasswordChar = true;
             txtPassword.Click += txtPassword_Click;
@@ -250,7 +289,7 @@
             txtTenDangNhap.Location = new Point(279, 37);
             txtTenDangNhap.Margin = new Padding(4);
             txtTenDangNhap.Name = "txtTenDangNhap";
-            txtTenDangNhap.Size = new Size(569, 45);
+            txtTenDangNhap.Size = new Size(569, 29);
             txtTenDangNhap.TabIndex = 0;
             txtTenDangNhap.Click += txtTenDangNhap_Click;
             txtTenDangNhap.TextChanged += txtTenDangNhap_TextChanged;
@@ -259,11 +298,12 @@
             // 
             label3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label3.AutoSize = true;
+            label3.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
             label3.ForeColor = Color.NavajoWhite;
             label3.Location = new Point(34, 90);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(171, 43);
+            label3.Size = new Size(100, 25);
             label3.TabIndex = 1;
             label3.Text = "Mật khẩu";
             // 
@@ -271,51 +311,31 @@
             // 
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label2.AutoSize = true;
+            label2.Font = new Font("Cascadia Code", 14F, FontStyle.Bold);
             label2.ForeColor = Color.NavajoWhite;
-            label2.Location = new Point(4, 38);
+            label2.Location = new Point(34, 37);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(266, 43);
+            label2.Size = new Size(155, 25);
             label2.TabIndex = 0;
             label2.Text = "Tên đăng nhập";
             // 
             // lnkRegister
             // 
-            lnkRegister.AutoSize = true;
+            lnkRegister.Anchor = AnchorStyles.None;
             lnkRegister.ForeColor = Color.NavajoWhite;
             lnkRegister.LinkColor = Color.NavajoWhite;
-            lnkRegister.Location = new Point(440, 478);
+            lnkRegister.Location = new Point(430, 417);
             lnkRegister.Margin = new Padding(4, 0, 4, 0);
             lnkRegister.Name = "lnkRegister";
-            lnkRegister.Size = new Size(0, 43);
+            lnkRegister.Size = new Size(438, 31);
             lnkRegister.TabIndex = 4;
+            lnkRegister.TextAlign = ContentAlignment.MiddleCenter;
             lnkRegister.LinkClicked += lnkRegister_LinkClicked_1;
-            // 
-            // lblIP
-            // 
-            lblIP.AutoSize = true;
-            lblIP.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblIP.ForeColor = Color.NavajoWhite;
-            lblIP.Location = new Point(21, 220);
-            lblIP.Name = "lblIP";
-            lblIP.Size = new Size(175, 35);
-            lblIP.TabIndex = 15;
-            lblIP.Text = "Địa chỉ IP";
-            // 
-            // lblPort
-            // 
-            lblPort.AutoSize = true;
-            lblPort.Font = new Font("Cascadia Code", 10.125F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPort.ForeColor = Color.NavajoWhite;
-            lblPort.Location = new Point(587, 220);
-            lblPort.Name = "lblPort";
-            lblPort.Size = new Size(159, 35);
-            lblPort.TabIndex = 16;
-            lblPort.Text = "Cổng Port";
             // 
             // LoginForm
             // 
-            AutoScaleDimensions = new SizeF(19F, 43F);
+            AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SaddleBrown;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
@@ -338,7 +358,6 @@
             panelCenter.ResumeLayout(false);
             panelCenter.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -364,5 +383,6 @@
         private Label lblConnectStatus;
         private Label lblPort;
         private Label lblIP;
+        private CheckBox chkHienMatKhau;
     }
 }

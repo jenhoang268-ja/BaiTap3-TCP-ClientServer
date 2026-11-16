@@ -421,5 +421,25 @@ namespace GameServer
         {
 
         }
+
+        private void txtLog_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvClients_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void grbLog_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grbDK_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

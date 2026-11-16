@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             lblGS = new Label();
             grbDK = new GroupBox();
             btnStop = new Button();
@@ -42,15 +43,15 @@
             lblC = new Label();
             lblCong = new Label();
             lblTT = new Label();
-            grbClients = new GroupBox();
-            dgvClients = new DataGridView();
             grbLog = new GroupBox();
             txtLog = new TextBox();
+            grbClients = new GroupBox();
+            dgvClients = new DataGridView();
             grbDK.SuspendLayout();
             grbTT.SuspendLayout();
+            grbLog.SuspendLayout();
             grbClients.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvClients).BeginInit();
-            grbLog.SuspendLayout();
             SuspendLayout();
             // 
             // lblGS
@@ -62,7 +63,7 @@
             lblGS.Location = new Point(560, 27);
             lblGS.Margin = new Padding(4, 0, 4, 0);
             lblGS.Name = "lblGS";
-            lblGS.Size = new Size(415, 61);
+            lblGS.Size = new Size(213, 31);
             lblGS.TabIndex = 0;
             lblGS.Text = "GAME SERVER";
             // 
@@ -75,19 +76,20 @@
             grbDK.ForeColor = Color.FromArgb(135, 60, 10);
             grbDK.Location = new Point(39, 102);
             grbDK.Name = "grbDK";
-            grbDK.Size = new Size(558, 168);
+            grbDK.Size = new Size(558, 127);
             grbDK.TabIndex = 1;
             grbDK.TabStop = false;
             grbDK.Text = "Điều khiển Server";
+            grbDK.Enter += grbDK_Enter;
             // 
             // btnStop
             // 
             btnStop.BackColor = Color.FromArgb(245, 210, 195);
             btnStop.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnStop.ForeColor = Color.FromArgb(165, 47, 32);
-            btnStop.Location = new Point(300, 66);
+            btnStop.Location = new Point(300, 38);
             btnStop.Name = "btnStop";
-            btnStop.Size = new Size(242, 80);
+            btnStop.Size = new Size(242, 58);
             btnStop.TabIndex = 1;
             btnStop.Text = "Dừng Server";
             btnStop.UseVisualStyleBackColor = false;
@@ -97,9 +99,9 @@
             // 
             btnStart.BackColor = Color.FromArgb(243, 178, 97);
             btnStart.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnStart.Location = new Point(16, 66);
+            btnStart.Location = new Point(20, 38);
             btnStart.Name = "btnStart";
-            btnStart.Size = new Size(242, 80);
+            btnStart.Size = new Size(242, 58);
             btnStart.TabIndex = 0;
             btnStart.Text = "Bắt đầu Server";
             btnStart.UseVisualStyleBackColor = false;
@@ -107,12 +109,13 @@
             // 
             // btnClearlog
             // 
+            btnClearlog.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnClearlog.BackColor = Color.FromArgb(243, 178, 97);
             btnClearlog.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnClearlog.ForeColor = Color.FromArgb(135, 60, 10);
-            btnClearlog.Location = new Point(1333, 939);
+            btnClearlog.Location = new Point(1083, 685);
             btnClearlog.Name = "btnClearlog";
-            btnClearlog.Size = new Size(216, 68);
+            btnClearlog.Size = new Size(216, 52);
             btnClearlog.TabIndex = 2;
             btnClearlog.Text = "Xoá Log";
             btnClearlog.UseVisualStyleBackColor = false;
@@ -131,9 +134,9 @@
             grbTT.Controls.Add(lblTT);
             grbTT.Font = new Font("Times New Roman", 13.875F, FontStyle.Bold, GraphicsUnit.Point, 0);
             grbTT.ForeColor = Color.FromArgb(135, 60, 10);
-            grbTT.Location = new Point(35, 298);
+            grbTT.Location = new Point(39, 255);
             grbTT.Name = "grbTT";
-            grbTT.Size = new Size(566, 322);
+            grbTT.Size = new Size(558, 221);
             grbTT.TabIndex = 3;
             grbTT.TabStop = false;
             grbTT.Text = "Thông tin Server";
@@ -142,9 +145,9 @@
             // 
             lblUpTime.AutoSize = true;
             lblUpTime.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblUpTime.Location = new Point(304, 250);
+            lblUpTime.Location = new Point(300, 177);
             lblUpTime.Name = "lblUpTime";
-            lblUpTime.Size = new Size(129, 36);
+            lblUpTime.Size = new Size(63, 19);
             lblUpTime.TabIndex = 7;
             lblUpTime.Text = "00:00:00";
             // 
@@ -152,9 +155,9 @@
             // 
             lblClientCount.AutoSize = true;
             lblClientCount.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblClientCount.Location = new Point(304, 188);
+            lblClientCount.Location = new Point(304, 130);
             lblClientCount.Name = "lblClientCount";
-            lblClientCount.Size = new Size(31, 36);
+            lblClientCount.Size = new Size(17, 19);
             lblClientCount.TabIndex = 6;
             lblClientCount.Text = "0";
             // 
@@ -162,9 +165,9 @@
             // 
             lblPort.AutoSize = true;
             lblPort.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPort.Location = new Point(304, 128);
+            lblPort.Location = new Point(300, 83);
             lblPort.Name = "lblPort";
-            lblPort.Size = new Size(79, 36);
+            lblPort.Size = new Size(41, 19);
             lblPort.TabIndex = 5;
             lblPort.Text = "8006";
             // 
@@ -172,9 +175,9 @@
             // 
             lblStatus.AutoSize = true;
             lblStatus.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblStatus.Location = new Point(304, 66);
+            lblStatus.Location = new Point(300, 35);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(148, 36);
+            lblStatus.Size = new Size(75, 19);
             lblStatus.TabIndex = 4;
             lblStatus.Text = "Chưa chạy";
             // 
@@ -182,9 +185,9 @@
             // 
             lblThoigian.AutoSize = true;
             lblThoigian.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblThoigian.Location = new Point(20, 250);
+            lblThoigian.Location = new Point(53, 177);
             lblThoigian.Name = "lblThoigian";
-            lblThoigian.Size = new Size(211, 36);
+            lblThoigian.Size = new Size(99, 19);
             lblThoigian.TabIndex = 3;
             lblThoigian.Text = "Thời gian chạy:";
             // 
@@ -192,9 +195,9 @@
             // 
             lblC.AutoSize = true;
             lblC.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblC.Location = new Point(20, 188);
+            lblC.Location = new Point(53, 130);
             lblC.Name = "lblC";
-            lblC.Size = new Size(143, 36);
+            lblC.Size = new Size(68, 19);
             lblC.TabIndex = 2;
             lblC.Text = "Số Client:";
             // 
@@ -202,9 +205,9 @@
             // 
             lblCong.AutoSize = true;
             lblCong.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblCong.Location = new Point(20, 128);
+            lblCong.Location = new Point(53, 83);
             lblCong.Name = "lblCong";
-            lblCong.Size = new Size(175, 36);
+            lblCong.Size = new Size(85, 19);
             lblCong.TabIndex = 1;
             lblCong.Text = "Cổng (Port):";
             // 
@@ -212,11 +215,39 @@
             // 
             lblTT.AutoSize = true;
             lblTT.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTT.Location = new Point(20, 66);
+            lblTT.Location = new Point(53, 35);
             lblTT.Name = "lblTT";
-            lblTT.Size = new Size(160, 36);
+            lblTT.Size = new Size(75, 19);
             lblTT.TabIndex = 0;
             lblTT.Text = "Trạng thái: ";
+            // 
+            // grbLog
+            // 
+            grbLog.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            grbLog.BackColor = Color.FromArgb(255, 240, 214);
+            grbLog.Controls.Add(txtLog);
+            grbLog.Font = new Font("Times New Roman", 13.875F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            grbLog.ForeColor = Color.FromArgb(135, 60, 10);
+            grbLog.Location = new Point(39, 494);
+            grbLog.Name = "grbLog";
+            grbLog.Size = new Size(1310, 185);
+            grbLog.TabIndex = 5;
+            grbLog.TabStop = false;
+            grbLog.Text = "Nhật ký hoạt động (Log)";
+            grbLog.Enter += grbLog_Enter;
+            // 
+            // txtLog
+            // 
+            txtLog.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            txtLog.BackColor = Color.FromArgb(255, 249, 238);
+            txtLog.ForeColor = Color.FromArgb(74, 43, 24);
+            txtLog.Location = new Point(7, 28);
+            txtLog.Multiline = true;
+            txtLog.Name = "txtLog";
+            txtLog.ScrollBars = ScrollBars.Vertical;
+            txtLog.Size = new Size(1297, 151);
+            txtLog.TabIndex = 0;
+            txtLog.TextChanged += txtLog_TextChanged;
             // 
             // grbClients
             // 
@@ -224,9 +255,9 @@
             grbClients.Controls.Add(dgvClients);
             grbClients.Font = new Font("Times New Roman", 13.875F, FontStyle.Bold, GraphicsUnit.Point, 0);
             grbClients.ForeColor = Color.FromArgb(135, 60, 10);
-            grbClients.Location = new Point(659, 102);
+            grbClients.Location = new Point(637, 93);
             grbClients.Name = "grbClients";
-            grbClients.Size = new Size(890, 518);
+            grbClients.Size = new Size(712, 383);
             grbClients.TabIndex = 4;
             grbClients.TabStop = false;
             grbClients.Text = "Danh sách Client đang kết nối";
@@ -237,65 +268,51 @@
             dgvClients.AllowUserToDeleteRows = false;
             dgvClients.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvClients.BackgroundColor = Color.FromArgb(255, 249, 238);
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Times New Roman", 13.875F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvClients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvClients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvClients.Location = new Point(18, 49);
+            dgvClients.Location = new Point(6, 28);
             dgvClients.Name = "dgvClients";
             dgvClients.ReadOnly = true;
             dgvClients.RowHeadersVisible = false;
             dgvClients.RowHeadersWidth = 82;
             dgvClients.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvClients.Size = new Size(854, 451);
+            dgvClients.Size = new Size(700, 349);
             dgvClients.TabIndex = 0;
-            // 
-            // grbLog
-            // 
-            grbLog.BackColor = Color.FromArgb(255, 240, 214);
-            grbLog.Controls.Add(txtLog);
-            grbLog.Font = new Font("Times New Roman", 13.875F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            grbLog.ForeColor = Color.FromArgb(135, 60, 10);
-            grbLog.Location = new Point(35, 626);
-            grbLog.Name = "grbLog";
-            grbLog.Size = new Size(1514, 307);
-            grbLog.TabIndex = 5;
-            grbLog.TabStop = false;
-            grbLog.Text = "Nhật ký hoạt động (Log)";
-            // 
-            // txtLog
-            // 
-            txtLog.BackColor = Color.FromArgb(255, 249, 238);
-            txtLog.ForeColor = Color.FromArgb(74, 43, 24);
-            txtLog.Location = new Point(20, 49);
-            txtLog.Multiline = true;
-            txtLog.Name = "txtLog";
-            txtLog.ScrollBars = ScrollBars.Vertical;
-            txtLog.Size = new Size(1476, 252);
-            txtLog.TabIndex = 0;
+            dgvClients.CellContentClick += dgvClients_CellContentClick;
             // 
             // ServerForm
             // 
-            AutoScaleDimensions = new SizeF(18F, 36F);
+            AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.Phố_đêm_rực_rỡ_dưới_đèn_lồng;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1574, 1019);
+            ClientSize = new Size(1370, 749);
+            Controls.Add(btnClearlog);
             Controls.Add(grbLog);
             Controls.Add(grbClients);
             Controls.Add(grbTT);
-            Controls.Add(btnClearlog);
             Controls.Add(grbDK);
             Controls.Add(lblGS);
             Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Margin = new Padding(4, 3, 4, 3);
             Name = "ServerForm";
             Text = "GAME SERVER";
+            WindowState = FormWindowState.Maximized;
             Load += ServerForm_Load;
             grbDK.ResumeLayout(false);
             grbTT.ResumeLayout(false);
             grbTT.PerformLayout();
-            grbClients.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgvClients).EndInit();
             grbLog.ResumeLayout(false);
             grbLog.PerformLayout();
+            grbClients.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvClients).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

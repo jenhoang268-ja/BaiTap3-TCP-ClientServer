@@ -143,9 +143,9 @@ namespace UserManagement
         {
             if (dragging && WindowState == FormWindowState.Normal)
             {
-                Point diff = Point.Subtract( Cursor.Position, new Size(dragCursorPoint));
+                Point diff = Point.Subtract(Cursor.Position, new Size(dragCursorPoint));
 
-                Location = Point.Add( dragFormPoint, new Size(diff));
+                Location = Point.Add(dragFormPoint, new Size(diff));
             }
         }
 
@@ -446,7 +446,7 @@ namespace UserManagement
         }
 
         private void panelCenter_Paint(object sender, PaintEventArgs e) { }
-        private void RegisterForm_Load_1(object sender, EventArgs e) 
+        private void RegisterForm_Load_1(object sender, EventArgs e)
         {
             CenterPanel();
         }
@@ -461,5 +461,51 @@ namespace UserManagement
         private void lblErrorEmail_Click(object sender, EventArgs e) { if (lblErrorEmail != null) lblErrorEmail.Text = ""; }
         private void txtEmail_TextChanged(object sender, EventArgs e) { if (lblErrorEmail != null) lblErrorEmail.Text = ""; }
         private void txtEmail_Click(object sender, EventArgs e) { if (lblErrorEmail != null) lblErrorEmail.Text = ""; }
+
+        private void lblErrorConfirm_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private bool isPasswordVisible = false;
+
+        private void btnHienmatkhau_Click(object sender, EventArgs e)
+        {
+            isPasswordVisible = !isPasswordVisible; // Đảo trạng thái
+
+            // Cập nhật TextBox
+            txtPassword.UseSystemPasswordChar = !isPasswordVisible;
+
+            // Đổi ảnh nền của nút (sử dụng BackgroundImage)
+            if (isPasswordVisible)
+            {
+                // Khi đang hiện chữ -> Hiện icon con mắt gạch chéo
+                btnHienmatkhau.BackgroundImage = Properties.Resources.hide;
+            }
+            else
+            {
+                // Khi đang che chữ bằng dấu chấm -> Hiện icon con mắt mở
+                btnHienmatkhau.BackgroundImage = Properties.Resources.view;
+            }
+        }
+
+        // Khai báo thêm một biến cờ riêng
+        private bool isConfirmPasswordVisible = false;
+
+        private void btnHienXacNhanMK_Click(object sender, EventArgs e)
+        {
+            isConfirmPasswordVisible = !isConfirmPasswordVisible;
+
+            txtConfirmPassword.UseSystemPasswordChar = !isConfirmPasswordVisible;
+
+            if (isConfirmPasswordVisible)
+            {
+                btnHienXacNhanMK.BackgroundImage = Properties.Resources.hide;
+            }
+            else
+            {
+                btnHienXacNhanMK.BackgroundImage = Properties.Resources.view;
+            }
+        }
     }
 }
